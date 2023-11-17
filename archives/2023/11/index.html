@@ -346,6 +346,10 @@ if(canvas.getContext){
                 if(digit[num][i][j] == 1){
                     cxt.beginPath();
                     cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    // 检测是否为暗夜模式
+                    var isDarkMode = document.body.classList.contains('darkmode--activated');
+                    // 根据暗夜模式设置填充颜色
+                    cxt.fillStyle = isDarkMode ? '#FFF' : '#000';
                     cxt.closePath();
                     cxt.fill();
                 }
