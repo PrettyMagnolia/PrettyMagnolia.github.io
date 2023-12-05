@@ -19,31 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="单保真优化算法(Single-Fidelity Optimization Algorithms) 单保真优化算法即为传统的优化算法，仅考虑在一个特定的评估条件下对模型性能的优化。通常，这个条件是某个单一的性能指标，例如在完整数据集上的准确率。">
+    <meta name="description" content="简述 英语单词根据其在句子中的作用，可以分为十个大类：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模型自动超参数优化算法">
-<meta property="og:url" content="http://example.com/2023/11/19/HPO-method/index.html">
+<meta property="og:title" content="英语词性分类">
+<meta property="og:url" content="http://example.com/2023/12/05/Part-of-English/index.html">
 <meta property="og:site_name" content="Liuyf&#39;s Blog">
-<meta property="og:description" content="单保真优化算法(Single-Fidelity Optimization Algorithms) 单保真优化算法即为传统的优化算法，仅考虑在一个特定的评估条件下对模型性能的优化。通常，这个条件是某个单一的性能指标，例如在完整数据集上的准确率。">
+<meta property="og:description" content="简述 英语单词根据其在句子中的作用，可以分为十个大类：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2023/11/19/HPO-method/img-1.png">
-<meta property="article:published_time" content="2023-11-19T11:29:11.000Z">
-<meta property="article:modified_time" content="2023-12-05T09:55:10.668Z">
+<meta property="article:published_time" content="2023-12-05T09:54:42.000Z">
+<meta property="article:modified_time" content="2023-12-05T09:57:00.641Z">
 <meta property="article:author" content="lyf">
-<meta property="article:tag" content="AutoML">
-<meta property="article:tag" content="HPO">
+<meta property="article:tag" content="English">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/11/19/HPO-method/img-1.png">
 
 
-<link rel="canonical" href="http://example.com/2023/11/19/HPO-method/">
+<link rel="canonical" href="http://example.com/2023/12/05/Part-of-English/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/11/19/HPO-method/","path":"2023/11/19/HPO-method/","title":"模型自动超参数优化算法"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/12/05/Part-of-English/","path":"2023/12/05/Part-of-English/","title":"英语词性分类"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>模型自动超参数优化算法 | Liuyf's Blog</title>
+<title>英语词性分类 | Liuyf's Blog</title>
   
 
 
@@ -142,11 +139,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E4%BF%9D%E7%9C%9F%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95single-fidelity-optimization-algorithms"><span class="nav-text">单保真优化算法(Single-Fidelity
-Optimization Algorithms)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2grid-search-gs"><span class="nav-text">1 网格搜索(Grid Search, GS)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">1.1 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">1.2 优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%90%9C%E7%B4%A2random-search-rs"><span class="nav-text">2 随机搜索(Random Search, RS)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-text">2.1 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-1"><span class="nav-text">2.2 优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BC%98%E5%8C%96bayesian-optimization-bo"><span class="nav-text">3 贝叶斯优化(Bayesian
-Optimization, BO)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="nav-text">3.1 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-2"><span class="nav-text">3.2 优缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%BF%9D%E7%9C%9F%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95multi-fidelity-optimization-algorithms"><span class="nav-text">多保真优化算法(Multi-Fidelity
-Optimization Algorithms)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#successive-halving%E7%AE%97%E6%B3%95sh"><span class="nav-text">4 Successive Halving算法(SH)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-3"><span class="nav-text">4.1 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-3"><span class="nav-text">4.2 优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hyperband%E7%AE%97%E6%B3%95hb"><span class="nav-text">5 Hyperband算法(HB)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-4"><span class="nav-text">5.1 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-text">5.2 步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-4"><span class="nav-text">5.4 优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bayesian-optimization-and-hyperband%E7%AE%97%E6%B3%95bohb"><span class="nav-text">6 Bayesian
-Optimization and Hyperband算法(BOHB)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-5"><span class="nav-text">6.1 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-5"><span class="nav-text">6.2 优缺点</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0"><span class="nav-text">简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8D%E8%AF%8Dnounn."><span class="nav-text">1 名词(noun&#x3D;&gt;n.)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8D%E8%AF%8D%E5%A4%8D%E6%95%B0%E7%9A%84%E8%A7%84%E5%88%99%E5%8F%98%E5%8C%96"><span class="nav-text">名词复数的规则变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8D%E8%AF%8D%E7%9A%84%E6%A0%BC"><span class="nav-text">名词的格</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E8%AF%8Dpronounpron."><span class="nav-text">2 代词(pronoun&#x3D;&gt;pron.)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB-1"><span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E5%88%97%E4%BA%BA%E7%A7%B0%E4%BB%A3%E8%AF%8D"><span class="nav-text">并列人称代词</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E5%AE%B9%E8%AF%8Dadjectiveadj."><span class="nav-text">3 形容词(adjective&#x3D;&gt;adj.)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E5%AE%B9%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%B1%BB%E5%88%AB%E5%92%8C%E6%95%B4%E4%BD%93"><span class="nav-text">形容词表示类别和整体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E8%AF%8Dverbv."><span class="nav-text">4 动词(verb&#x3D;&gt;v.)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-3"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB-2"><span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E5%8A%A8%E8%AF%8D%E5%88%86%E7%B1%BB"><span class="nav-text">系动词分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%AF%E8%AF%8Dadverbadv."><span class="nav-text">5 副词(adverb&#x3D;&gt;adv.)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-4"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB-3"><span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E8%AF%8Dnumeralnum."><span class="nav-text">6 数词(numeral&#x3D;&gt;num.)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%A0%E8%AF%8Darticleart."><span class="nav-text">7 冠词(article&#x3D;&gt;art.)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-5"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB-4"><span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E5%86%A0%E8%AF%8D%E7%94%A8%E6%B3%95"><span class="nav-text">定冠词用法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E8%AF%8Dprepositionprep."><span class="nav-text">8 介词(preposition&#x3D;&gt;prep.)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-6"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB-5"><span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E8%AF%8Dconjunctionconj."><span class="nav-text">9 连词(conjunction&#x3D;&gt;conj.)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-7"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB-6"><span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%9F%E5%8F%B9%E8%AF%8Dinterjectioninterj."><span class="nav-text">10
+感叹词(interjection&#x3D;&gt;interj.)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-8"><span class="nav-text">定义</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -475,7 +469,7 @@ if(canvas.getContext){
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/19/HPO-method/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/05/Part-of-English/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -488,12 +482,12 @@ if(canvas.getContext){
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="模型自动超参数优化算法 | Liuyf's Blog">
+      <meta itemprop="name" content="英语词性分类 | Liuyf's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          模型自动超参数优化算法
+          英语词性分类
         </h1>
 
         <div class="post-meta-container">
@@ -503,15 +497,9 @@ if(canvas.getContext){
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-11-19 19:29:11" itemprop="dateCreated datePublished" datetime="2023-11-19T19:29:11+08:00">2023-11-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-05 17:55:10" itemprop="dateModified" datetime="2023-12-05T17:55:10+08:00">2023-12-05</time>
+      <time title="Created: 2023-12-05 17:54:42 / Modified: 17:57:00" itemprop="dateCreated datePublished" datetime="2023-12-05T17:54:42+08:00">2023-12-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -519,7 +507,7 @@ if(canvas.getContext){
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Learning-Notes/" itemprop="url" rel="index"><span itemprop="name">Learning Notes</span></a>
+          <a href="/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a>
         </span>
     </span>
 
@@ -537,14 +525,14 @@ if(canvas.getContext){
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>1.8k</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>6 mins.</span>
+      <span>5 mins.</span>
     </span>
 </div>
 
@@ -554,93 +542,291 @@ if(canvas.getContext){
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2
-id="单保真优化算法single-fidelity-optimization-algorithms">单保真优化算法(Single-Fidelity
-Optimization Algorithms)</h2>
-<p>单保真优化算法即为传统的优化算法，仅考虑在一个特定的评估条件下对模型性能的优化。通常，这个条件是某个单一的性能指标，例如在完整数据集上的准确率。</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="简述">简述</h2>
+<p>英语单词根据其在句子中的作用，可以分为十个大类：</p>
 <span id="more"></span>
-<h3 id="网格搜索grid-search-gs">1 网格搜索(Grid Search, GS)</h3>
-<h4 id="定义">1.1 定义</h4>
-<p>网格搜索是一种穷举搜索方法，其通过遍历搜索空间中所有可能的组合来寻找最优超参数。</p>
-<p>网格搜索首先为每个超参数设定一组候选值，然后生成这些候选值的笛卡尔积，形成搜索空间，接下来会对每个超参数组合进行模型训练和评估，从而找到性能最佳的超参数组合。</p>
-<h4 id="优缺点">1.2 优缺点</h4>
-<p><strong>优点：</strong>网格搜索确保可以找到全局最优的超参数组合。</p>
-<p><strong>缺点：</strong>当超参数的数量和候选值较多时，会导致生成的搜索空间较大，应用网格搜索将十分消耗计算资源。</p>
-<p>可以选择固定多数超参数，分别对1-2个超参数调优的方式在一定程度上降低网格搜索的计算量。但该方法难以自动化执行，且由于目标函数一般为非凸，容易陷入局部最小值。</p>
-<h3 id="随机搜索random-search-rs">2 随机搜索(Random Search, RS)</h3>
-<h4 id="定义-1">2.1 定义</h4>
-<p>随机搜索是一种随机化的搜索方法，通过随机采样超参数组合来寻找最优超参数。</p>
-<h4 id="优缺点-1">2.2 优缺点</h4>
-<p><strong>优点：</strong>相较于网格搜索，随机搜索的计算成本较低，有可能在较短时间内找到较好的超参数组合。</p>
-<p><strong>缺点：</strong>随机搜索不保证可以找到全局最优解，且对于超参数空间的分布不均匀的情况可能效果较差。</p>
-<h3 id="贝叶斯优化bayesian-optimization-bo">3 贝叶斯优化(Bayesian
-Optimization, BO)</h3>
-<h4 id="定义-2">3.1 定义</h4>
-<p>贝叶斯优化是一种基于概率模型的全局优化方法，通过构建目标函数的概率模型（一般为高斯过程），预测未观测点的目标函数值和不确定性，在每次迭代中个根据采集函数确定下一个采样点进行评估，以最小化目标函数，寻找最优超参数。</p>
-<h4 id="优缺点-2">3.2 优缺点</h4>
-<p><strong>优点：</strong>BO算法考虑之前的参数信息，在低维空间中，能够在相对较少的迭代次数中找到全局最优解，性能显著优于网格搜索和随机搜索。</p>
-<p><strong>缺点：</strong>当参数较多时，容易发生维度爆炸，且会需要消耗大量的资源及时间。且那些具有未知平滑度和有噪声的高维、非凸函数，BO算法往往很难对其进行拟合和优化，而且通常BO算法都有很强的假设条件，而这些条件一般又很难满足。</p>
-<h2
-id="多保真优化算法multi-fidelity-optimization-algorithms">多保真优化算法(Multi-Fidelity
-Optimization Algorithms)</h2>
-<p>多保真度优化考虑了在多个评估条件下对模型性能的优化，可以是在不同的训练时间、资源预算、数据规模等条件下评估模型性能。这对于资源有限的任务，如在大数据集上的AutoML中，可以更有效地进行模型选择和优化。</p>
-<h3 id="successive-halving算法sh">4 Successive Halving算法(SH)</h3>
-<h4 id="定义-3">4.1 定义</h4>
-<p>Successive Halving
-算法是一种高效并行化的优化算法，其基本思想为，在每一轮中对超参数组合均匀的分配预算并进行验证评估，根据验证结果淘汰一半表现差的超参数组合，之后重复迭代上述过程直到找到最优的超参数组合。</p>
-<p>其中，算法中提到的预算，根据不同的应用场景可以有不同的定义，例如：</p>
+<table>
+<thead>
+<tr class="header">
+<th>序号</th>
+<th>名称</th>
+<th>英文</th>
+<th>缩写</th>
+<th>样例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>名词</td>
+<td>noun</td>
+<td>n.</td>
+<td>boat 船</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>代词</td>
+<td>pronoun</td>
+<td>pron.</td>
+<td>they 他们</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>形容词</td>
+<td>adjective</td>
+<td>adj.</td>
+<td>happy 高兴的</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>动词</td>
+<td>verb</td>
+<td>v.</td>
+<td>draw 画</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>副词</td>
+<td>adverb</td>
+<td>adv.</td>
+<td>fast 快速地</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>数词</td>
+<td>numeral</td>
+<td>num.</td>
+<td>two 二</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>冠词</td>
+<td>article</td>
+<td>art.</td>
+<td>a 一个</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>介词</td>
+<td>preposition</td>
+<td>prep.</td>
+<td>at 在...</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>连词</td>
+<td>conjunction</td>
+<td>conj.</td>
+<td>and 和</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>感叹词</td>
+<td>interjection</td>
+<td>interj.</td>
+<td>oh 哦</td>
+</tr>
+</tbody>
+</table>
+<p>根据它们在句子结构中的作用和成分又被分为实词和虚词。在句子中独立担任成分的是实词；不能在句子中独立担任任何成分的词，叫虚词。（前六种为实词，后四种为虚词）</p>
+<h2 id="名词nounn.">1 名词(noun=&gt;n.)</h2>
+<h3 id="定义">定义</h3>
+<p>人或事物的名称。</p>
+<h3 id="分类">分类</h3>
 <ul>
-<li>迭代算法的迭代数(如：神经网络的epoch、随机森林，GBDT的树的个数)</li>
-<li>机器学习算法所使用的样本数</li>
-<li>深度强化学习中的尝试数 等</li>
+<li>专有名词(proper
+noun)：专门的，特指的名词，<strong>一般首字母大写</strong>。eg. China,
+Earth, Chengdu, June, Tuesday.</li>
+<li>普通名词(common
+noun)：非专有，可泛指。分为可数名词(cn.)和不可数名词(un.) eg.
+可数：flower, guitar, plant; 不可数：water, money,
+grass（可数名词有单数和复数的区别）</li>
 </ul>
-<h4 id="优缺点-3">4.2 优缺点</h4>
-<p><strong>优点：</strong>SH算法在每一轮中并行评估多个超参数组合，提高了搜索的效率。通过在每一轮中动态调整资源分配，为性能较好的超参数组合分配更多资源，实现了资源消耗和搜索性能的权衡。</p>
-<p><strong>缺点：</strong>SH算法对初始条件敏感，因为该算法需要将超参数组合数量和总资源量作为算法输入，因此需要在算法开始前进行超参数组合和资源之间的权衡。而实际上，在评估之前，无法得知设置超参数组合的数量和资源量的最优值。</p>
-<h3 id="hyperband算法hb">5 Hyperband算法(HB)</h3>
-<h4 id="定义-4">5.1 定义</h4>
-<p>Hyperband 的基本思想是通过在不同的超参数配置上运行不同的 Bandit
-算法实例，实现对多组配置的并行评估，并使用 Successive Halving
-的策略进行资源动态分配。</p>
-<p>在 Hyperband 中，每个 Successive Halving 阶段都有一个 Bandit
-算法的实例运行。该实例的任务是在给定的资源限制下，对一组超参数配置进行评估，并选择性能最好的一部分配置进入下一轮。</p>
-<h4 id="步骤">5.2 步骤</h4>
-<img src="/2023/11/19/HPO-method/img-1.png" class="" title="img">
-<p>算法输入：</p>
+<p>名词在句子中可做<strong>主语、宾语、定语</strong>等。</p>
+<h3 id="名词复数的规则变化">名词复数的规则变化</h3>
+<table>
+<thead>
+<tr class="header">
+<th>情况</th>
+<th>构成方法</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>一般情况</td>
+<td>加-s</td>
+<td>bag-bags</td>
+</tr>
+<tr class="even">
+<td>以s, sh, ch, x等结尾</td>
+<td>加-es</td>
+<td>peach-peaches</td>
+</tr>
+<tr class="odd">
+<td>以辅音字母+y结尾</td>
+<td>变y为i再加es</td>
+<td>baby-babies</td>
+</tr>
+</tbody>
+</table>
+<h3 id="名词的格">名词的格</h3>
+<p>有些名词可以加“‘s”来表示所有关系，带这种词尾的名词形式称为该<strong>名词的所有格</strong>，如：a
+teacher's book。</p>
+<p>名词所有格的规则如下：</p>
 <ul>
-<li><span
-class="math inline">\(R\)</span>：单个超参数组合所能分配的最大预算</li>
-<li><span
-class="math inline">\(\eta\)</span>：用于控制每次迭代后淘汰参数设置的比例的参数</li>
+<li>单数名词词尾加“'s”，复数名词词尾没有s，也要加“'s”。eg. the boy's bag
+男孩的书包，men's room 男厕所。</li>
+<li>若名词已有复数词尾-s ，只加“'”。eg. the workers’
+struggle工人的斗争</li>
 </ul>
-<p>其他参数含义：</p>
+<h2 id="代词pronounpron.">2 代词(pronoun=&gt;pron.)</h2>
+<h3 id="定义-1">定义</h3>
+<p>用来<strong>代指</strong>名词。</p>
+<h3 id="分类-1">分类</h3>
 <ul>
-<li><span
-class="math inline">\(s_{max}\)</span>：控制总预算大小的参数</li>
-<li><span class="math inline">\(B\)</span>：总预算</li>
-<li><span class="math inline">\(n\)</span>：采样的超参数配置数</li>
-<li><span
-class="math inline">\(r\)</span>：单个超参数组合实际分配到的预算</li>
+<li>人称代词（I, me, we, us etc.）</li>
+<li>物主代词（my, our; mine, ours etc.）</li>
+<li>反身代词（myself, ourselves etc.）</li>
+<li>相互代词（each other, another）</li>
+<li>疑问代词（who,what, how, why etc.）</li>
+<li>不定代词（some, any, both, many etc.）</li>
+<li>指示代词（this/that, these/those）</li>
 </ul>
-<p>函数含义：</p>
+<p>（能做到识别出一个词是代词即可，不用刻意记忆代词的分类）</p>
+<h3 id="并列人称代词">并列人称代词</h3>
+<p>不同人称代词并列时，需要遵循一定的排序规则</p>
 <ul>
-<li><code>get_hyperparameter_configuration(n)</code>：采样得到n组不同的超参数设置</li>
-<li><code>run_then_return_val_loss(t,r_i)</code>：根据指定的参数设置和预算计算valid
-loss</li>
-<li><code>top_k()</code>：根据指定参数选择前k个组合</li>
+<li>单数人称代词：二、三、一 eg. you, he and I</li>
+<li>复数人称代词：一、二、三 eg. we, you and they</li>
 </ul>
-<h4 id="优缺点-4">5.4 优缺点</h4>
-<p><strong>优点：</strong>HB算法在Successive
-Halving算法的基础上引入了更多的并行性，能够在不同的尺度上进行搜索，通过调整参数，可以在不同的计算资源预算下运行HB，具备更高的并行性和更加灵活的资源利用方式。</p>
-<p><strong>缺点：</strong>HB算法同样对初始配置敏感，不同的初始配置可能导致不同的搜索路径和结果。</p>
-<h3 id="bayesian-optimization-and-hyperband算法bohb">6 Bayesian
-Optimization and Hyperband算法(BOHB)</h3>
-<h4 id="定义-5">6.1 定义</h4>
-<p>在HB算法中，采样超参数配置使用的方法是均匀随机采样，而BOHB算法在HB算法的基础上，结合贝叶斯优化算法，更加合理的采样超参数配置。</p>
-<h4 id="优缺点-5">6.2 优缺点</h4>
-<p><strong>优点：</strong>
-BOHB算法结合了HB算法和贝叶斯优化，通过建模和利用先前评估的配置来更智能地选择下一个要评估的配置，进一步提高了搜索效率。</p>
-<p><strong>缺点：</strong>引入贝叶斯优化后，提升了整个算法的复杂程度，会引入一定的计算开销。因此更加适用于大型搜索空间，对于较小的问题或计算资源非常有限的情况，BOHB算法并不适用。</p>
+<h2 id="形容词adjectiveadj.">3 形容词(adjective=&gt;adj.)</h2>
+<h3 id="定义-2">定义</h3>
+<p>描写和修饰<strong>名词或代词，表示人或物的性质、状态、特征或属性。</strong>eg.
+beautiful, ugly, big, small</p>
+<p>通常做<strong>定语，或者表语、补语、状语</strong>。</p>
+<p><strong>形容词作定语修饰名词时，要放在名词之前。如果形容词修饰以-thing为字尾的词语时，要放在这些词之后。eg.
+something nice</strong></p>
+<h3 id="形容词表示类别和整体">形容词表示类别和整体</h3>
+<p>某些形容词加上定冠词可以泛指一类人，与谓语动词的复数连接。eg. the
+dead，the living，the rich，the poor，the blind，the hungry</p>
+<h2 id="动词verbv.">4 动词(verb=&gt;v.)</h2>
+<h3 id="定义-3">定义</h3>
+<p>表示动作或者状态。</p>
+<h3 id="分类-2">分类</h3>
+<ul>
+<li>系动词（be, seem, look, sound etc.）</li>
+<li>助动词（do, does, did etc.）</li>
+<li>情态动词（can, will, shall, must etc.）、</li>
+<li>实义动词（分为及物动词和非及物动词）
+<ul>
+<li>及物动词（vt.）后面可直接跟宾语 eg. love (you)</li>
+<li>非及物动词（vi.）后不可以直接跟宾语。eg. go</li>
+</ul></li>
+</ul>
+<h3 id="系动词分类">系动词分类</h3>
+<ul>
+<li>状态系动词：表示主语状态，只有be</li>
+<li>持续系动词：表示主语保持一种状态或态度， eg. keep, stat, lie</li>
+<li>表像系动词：表示“看起来像”，eg. seem, appear, look</li>
+<li>感官系动词：表示感官，eg. feel, smell, sound, taste</li>
+<li>变化系动词：表示主语变成什么样子，eg. become, grow, go</li>
+<li>终止系动词：表示主语已终止动作，eg. prove, turn out</li>
+</ul>
+<h2 id="副词adverbadv.">5 副词(adverb=&gt;adv.)</h2>
+<h3 id="定义-4">定义</h3>
+<p>句子中<strong>表示行为或状态特征的词</strong>，用以修饰动词、形容词、其他副词或全句，表示时间、地点、程度、方式等概念。</p>
+<h3 id="分类-3">分类</h3>
+<p>时间副词、频率副词、地点副词、方式副词、程度副词、疑问副词、连接副词、关系副词等。</p>
+<h2 id="数词numeralnum.">6 数词(numeral=&gt;num.)</h2>
+<p><strong>定义：</strong>表示数字的词。</p>
+<p><strong>分类：</strong></p>
+<ul>
+<li>基数词（one, two, three）</li>
+<li>序数词（first, second, third）</li>
+</ul>
+<h2 id="冠词articleart.">7 冠词(article=&gt;art.)</h2>
+<h3 id="定义-5">定义</h3>
+<p>放在名词前面，表示名词所指的人、物。</p>
+<h3 id="分类-4">分类</h3>
+<ul>
+<li>定冠词：the</li>
+<li>不定冠词：a/ an</li>
+</ul>
+<h3 id="定冠词用法">定冠词用法</h3>
+<table>
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>用法</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>特指双方都明白的人或物</td>
+<td>Take the medicine.</td>
+</tr>
+<tr class="even">
+<td>上文提到过的人或事</td>
+<td>He bought a house. I’ve been to the house.</td>
+</tr>
+<tr class="odd">
+<td>指世上独一物二的事物</td>
+<td>the sun, the sky, the moon, the earth</td>
+</tr>
+<tr class="even">
+<td>单数名词连用表示一类事物</td>
+<td>the dollar; the fox</td>
+</tr>
+<tr class="odd">
+<td>用在序数词和形容词最高级之前</td>
+<td>I live on the second floor.</td>
+</tr>
+<tr class="even">
+<td>与复数名词连用，指整个群体</td>
+<td>They are the teachers of this school.</td>
+</tr>
+<tr class="odd">
+<td>用在专有名词前</td>
+<td>the People's Republic of China</td>
+</tr>
+<tr class="even">
+<td>用在姓氏的复数名词之前，表示一家人</td>
+<td>the Greens</td>
+</tr>
+</tbody>
+</table>
+<h2 id="介词prepositionprep.">8 介词(preposition=&gt;prep.)</h2>
+<h3 id="定义-6">定义</h3>
+<p>用在<strong>名词、代词</strong>前，表示名词、代词等与其它词的关系。</p>
+<h3 id="分类-5">分类</h3>
+<ul>
+<li>地点（位置、范围）介词：eg. from来自..., in在...里面, at在…处</li>
+<li>方向（目标趋向）介词：eg. around绕着..., through穿过...</li>
+<li>时间介词：eg. at在… (时刻), on在(某日), in在(上/下午)</li>
+<li>方式介词：eg. by用/由/乘坐/被...,
+on骑(车)/徒(步),通过(收音机/电视机)</li>
+<li>涉及介词：eg. about关于...</li>
+</ul>
+<p>介词与其他词一起构成介词短语，eg. in the book, with you, on the
+bridge</p>
+<h2 id="连词conjunctionconj.">9 连词(conjunction=&gt;conj.)</h2>
+<h3 id="定义-7">定义</h3>
+<p>连词是<strong>连接词与词，短语与短语，句子与句子</strong>的词语。</p>
+<h3 id="分类-6">分类</h3>
+<ul>
+<li>并列连词（and, or, etc.）</li>
+<li>转折连词（but）</li>
+<li>因果连词（therefore, because, etc.）</li>
+</ul>
+<h2 id="感叹词interjectioninterj.">10
+感叹词(interjection=&gt;interj.)</h2>
+<h3 id="定义-8">定义</h3>
+<p>表示说话时情感的词。eg. ah, oh, wow, ha, hey</p>
 
     </div>
 
@@ -663,7 +849,7 @@ BOHB算法结合了HB算法和贝叶斯优化，通过建模和利用先前评�
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="http://example.com/2023/11/19/HPO-method/" title="模型自动超参数优化算法">http://example.com/2023/11/19/HPO-method/</a>
+      <a href="http://example.com/2023/12/05/Part-of-English/" title="英语词性分类">http://example.com/2023/12/05/Part-of-English/</a>
   </li>
   <li class="post-copyright-license">
       <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -672,22 +858,18 @@ BOHB算法结合了HB算法和贝叶斯优化，通过建模和利用先前评�
 </div>
 
           <div class="post-tags">
-              <a href="/tags/AutoML/" rel="tag"><i class="fa fa-tag"></i> AutoML</a>
-              <a href="/tags/HPO/" rel="tag"><i class="fa fa-tag"></i> HPO</a>
+              <a href="/tags/English/" rel="tag"><i class="fa fa-tag"></i> English</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/11/16/EA-HAS-Bench/" rel="prev" title="EA-HAS-Bench">
-                  <i class="fa fa-angle-left"></i> EA-HAS-Bench
+                <a href="/2023/11/19/HPO-method/" rel="prev" title="模型自动超参数优化算法">
+                  <i class="fa fa-angle-left"></i> 模型自动超参数优化算法
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/12/05/Part-of-English/" rel="next" title="英语词性分类">
-                  英语词性分类 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
