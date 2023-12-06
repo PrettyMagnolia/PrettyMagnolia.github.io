@@ -134,6 +134,302 @@ BANANAS</li>
       </tags>
   </entry>
   <entry>
+    <title>模型自动超参数优化算法</title>
+    <url>/2023/11/19/HPO-Method/</url>
+    <content><![CDATA[<h2
+id="单保真优化算法single-fidelity-optimization-algorithms">单保真优化算法(Single-Fidelity
+Optimization Algorithms)</h2>
+<p>单保真优化算法即为传统的优化算法，仅考虑在一个特定的评估条件下对模型性能的优化。通常，这个条件是某个单一的性能指标，例如在完整数据集上的准确率。</p>
+<span id="more"></span>
+<h3 id="网格搜索grid-search-gs">1 网格搜索(Grid Search, GS)</h3>
+<h4 id="定义">1.1 定义</h4>
+<p>网格搜索是一种穷举搜索方法，其通过遍历搜索空间中所有可能的组合来寻找最优超参数。</p>
+<p>网格搜索首先为每个超参数设定一组候选值，然后生成这些候选值的笛卡尔积，形成搜索空间，接下来会对每个超参数组合进行模型训练和评估，从而找到性能最佳的超参数组合。</p>
+<h4 id="优缺点">1.2 优缺点</h4>
+<p><strong>优点：</strong>网格搜索确保可以找到全局最优的超参数组合。</p>
+<p><strong>缺点：</strong>当超参数的数量和候选值较多时，会导致生成的搜索空间较大，应用网格搜索将十分消耗计算资源。</p>
+<p>可以选择固定多数超参数，分别对1-2个超参数调优的方式在一定程度上降低网格搜索的计算量。但该方法难以自动化执行，且由于目标函数一般为非凸，容易陷入局部最小值。</p>
+<h3 id="随机搜索random-search-rs">2 随机搜索(Random Search, RS)</h3>
+<h4 id="定义-1">2.1 定义</h4>
+<p>随机搜索是一种随机化的搜索方法，通过随机采样超参数组合来寻找最优超参数。</p>
+<h4 id="优缺点-1">2.2 优缺点</h4>
+<p><strong>优点：</strong>相较于网格搜索，随机搜索的计算成本较低，有可能在较短时间内找到较好的超参数组合。</p>
+<p><strong>缺点：</strong>随机搜索不保证可以找到全局最优解，且对于超参数空间的分布不均匀的情况可能效果较差。</p>
+<h3 id="贝叶斯优化bayesian-optimization-bo">3 贝叶斯优化(Bayesian
+Optimization, BO)</h3>
+<h4 id="定义-2">3.1 定义</h4>
+<p>贝叶斯优化是一种基于概率模型的全局优化方法，通过构建目标函数的概率模型（一般为高斯过程），预测未观测点的目标函数值和不确定性，在每次迭代中个根据采集函数确定下一个采样点进行评估，以最小化目标函数，寻找最优超参数。</p>
+<h4 id="优缺点-2">3.2 优缺点</h4>
+<p><strong>优点：</strong>BO算法考虑之前的参数信息，在低维空间中，能够在相对较少的迭代次数中找到全局最优解，性能显著优于网格搜索和随机搜索。</p>
+<p><strong>缺点：</strong>当参数较多时，容易发生维度爆炸，且会需要消耗大量的资源及时间。且那些具有未知平滑度和有噪声的高维、非凸函数，BO算法往往很难对其进行拟合和优化，而且通常BO算法都有很强的假设条件，而这些条件一般又很难满足。</p>
+<h2
+id="多保真优化算法multi-fidelity-optimization-algorithms">多保真优化算法(Multi-Fidelity
+Optimization Algorithms)</h2>
+<p>多保真度优化考虑了在多个评估条件下对模型性能的优化，可以是在不同的训练时间、资源预算、数据规模等条件下评估模型性能。这对于资源有限的任务，如在大数据集上的AutoML中，可以更有效地进行模型选择和优化。</p>
+<h3 id="successive-halving算法sh">4 Successive Halving算法(SH)</h3>
+<h4 id="定义-3">4.1 定义</h4>
+<p>Successive Halving
+算法是一种高效并行化的优化算法，其基本思想为，在每一轮中对超参数组合均匀的分配预算并进行验证评估，根据验证结果淘汰一半表现差的超参数组合，之后重复迭代上述过程直到找到最优的超参数组合。</p>
+<p>其中，算法中提到的预算，根据不同的应用场景可以有不同的定义，例如：</p>
+<ul>
+<li>迭代算法的迭代数(如：神经网络的epoch、随机森林，GBDT的树的个数)</li>
+<li>机器学习算法所使用的样本数</li>
+<li>深度强化学习中的尝试数 等</li>
+</ul>
+<h4 id="优缺点-3">4.2 优缺点</h4>
+<p><strong>优点：</strong>SH算法在每一轮中并行评估多个超参数组合，提高了搜索的效率。通过在每一轮中动态调整资源分配，为性能较好的超参数组合分配更多资源，实现了资源消耗和搜索性能的权衡。</p>
+<p><strong>缺点：</strong>SH算法对初始条件敏感，因为该算法需要将超参数组合数量和总资源量作为算法输入，因此需要在算法开始前进行超参数组合和资源之间的权衡。而实际上，在评估之前，无法得知设置超参数组合的数量和资源量的最优值。</p>
+<h3 id="hyperband算法hb">5 Hyperband算法(HB)</h3>
+<h4 id="定义-4">5.1 定义</h4>
+<p>Hyperband 的基本思想是通过在不同的超参数配置上运行不同的 Bandit
+算法实例，实现对多组配置的并行评估，并使用 Successive Halving
+的策略进行资源动态分配。</p>
+<p>在 Hyperband 中，每个 Successive Halving 阶段都有一个 Bandit
+算法的实例运行。该实例的任务是在给定的资源限制下，对一组超参数配置进行评估，并选择性能最好的一部分配置进入下一轮。</p>
+<h4 id="步骤">5.2 步骤</h4>
+<img src="/2023/11/19/HPO-Method/img-1.png" class="" title="img-1">
+<p>算法输入：</p>
+<ul>
+<li><span
+class="math inline">\(R\)</span>：单个超参数组合所能分配的最大预算</li>
+<li><span
+class="math inline">\(\eta\)</span>：用于控制每次迭代后淘汰参数设置的比例的参数</li>
+</ul>
+<p>其他参数含义：</p>
+<ul>
+<li><span
+class="math inline">\(s_{max}\)</span>：控制总预算大小的参数</li>
+<li><span class="math inline">\(B\)</span>：总预算</li>
+<li><span class="math inline">\(n\)</span>：采样的超参数配置数</li>
+<li><span
+class="math inline">\(r\)</span>：单个超参数组合实际分配到的预算</li>
+</ul>
+<p>函数含义：</p>
+<ul>
+<li><code>get_hyperparameter_configuration(n)</code>：采样得到n组不同的超参数设置</li>
+<li><code>run_then_return_val_loss(t,r_i)</code>：根据指定的参数设置和预算计算valid
+loss</li>
+<li><code>top_k()</code>：根据指定参数选择前k个组合</li>
+</ul>
+<h4 id="优缺点-4">5.4 优缺点</h4>
+<p><strong>优点：</strong>HB算法在Successive
+Halving算法的基础上引入了更多的并行性，能够在不同的尺度上进行搜索，通过调整参数，可以在不同的计算资源预算下运行HB，具备更高的并行性和更加灵活的资源利用方式。</p>
+<p><strong>缺点：</strong>HB算法同样对初始配置敏感，不同的初始配置可能导致不同的搜索路径和结果。</p>
+<h3 id="bayesian-optimization-and-hyperband算法bohb">6 Bayesian
+Optimization and Hyperband算法(BOHB)</h3>
+<h4 id="定义-5">6.1 定义</h4>
+<p>在HB算法中，采样超参数配置使用的方法是均匀随机采样，而BOHB算法在HB算法的基础上，结合贝叶斯优化算法，更加合理的采样超参数配置。</p>
+<h4 id="优缺点-5">6.2 优缺点</h4>
+<p><strong>优点：</strong>
+BOHB算法结合了HB算法和贝叶斯优化，通过建模和利用先前评估的配置来更智能地选择下一个要评估的配置，进一步提高了搜索效率。</p>
+<p><strong>缺点：</strong>引入贝叶斯优化后，提升了整个算法的复杂程度，会引入一定的计算开销。因此更加适用于大型搜索空间，对于较小的问题或计算资源非常有限的情况，BOHB算法并不适用。</p>
+]]></content>
+      <categories>
+        <category>Learning Notes</category>
+      </categories>
+      <tags>
+        <tag>AutoML</tag>
+        <tag>HPO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NAS算法分类和评估</title>
+    <url>/2023/12/06/NAS-Method-Comp-Eval/</url>
+    <content><![CDATA[<h1 id="算法分类">算法分类</h1>
+<h2 id="网格随机搜索grid-random-search-rs">1 网格/随机搜索(Grid &amp;
+Random Search, RS)</h2>
+<p>网格搜索：在搜索空间中搜索每一个点。</p>
+<p>随机搜索：在整个搜索空间中随机采样。随机搜索不能保证搜索到全局最优解，只能认为搜索的时间越长，越可能搜索到最优解。</p>
+<p>Hyperband：在随机搜索的基础上，在资源和性能之间进行了权衡。</p>
+<blockquote>
+<p>Hyperband: A novel bandit-based approach to hyperparameter
+optimization</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="强化学习reinforcement-learning-rl">2 强化学习(Reinforcement
+Learning, RL)</h2>
+<p>基于RL的方法由以下两个部分组成：</p>
+<ul>
+<li><strong>控制器</strong>（如RNN），用于生成子网络</li>
+<li><strong>奖励网络</strong>（Reward
+Network），用于评价生成的子网络。并根据子网络的“奖励”（如准确率）更新控制器的参数。</li>
+</ul>
+<img src="/2023/12/06/NAS-Method-Comp-Eval/img-1.png" class="" title="img-1">
+<p>最早的基于RL的NAS算法，训练了一个RNN生成网络的结构</p>
+<blockquote>
+<p>Neural architecture search with reinforcement Learning</p>
+</blockquote>
+<p>此后提出了MetaQNN，提供了元建模”算法（meta modeling
+algorithm）。该算法使用Q-learning和ε-greedy探索策略和经验回放（experience
+replay），顺序地搜索神经结构。</p>
+<blockquote>
+<p>Designing neural network architectures using reinforcement
+learning</p>
+</blockquote>
+<p>但上述两个算法使用的是整体结构，在搜索和训练时都十分耗时。</p>
+<p>为了进一步提升效率，许多RL算法使用了基于Cell的结构，提升搜索效率。</p>
+<blockquote>
+<p>Learning transferable architectures for scalable image
+recognition.(NASNet) Practical block-wise neural network architecture
+generation.(BlockQNN) Efficient neural architecture search via parameter
+sharing.(ENAS)</p>
+</blockquote>
+<h2 id="演化算法evolutionary-algorithm-ea">3 演化算法(Evolutionary
+Algorithm, EA)</h2>
+<p>演化算法是一种基于种群的泛启发式优化算法。</p>
+<h3 id="编码方式">编码方式</h3>
+<p>基于演化算法的网络编码表达不一样，所以对应工作的基因操作也不一样。具体有两种编码方式。</p>
+<h4 id="直接编码">直接编码</h4>
+<p>将问题的解（个体）直接表示为基因型的方法。在这种情况下，基因型的每一部分都对应于问题解的一个特定属性或特征。</p>
+<p>例如：使用二进制编码表示网络结构，比如“1”表示两个节点是相连的。</p>
+<blockquote>
+<p>Genetic CNN</p>
+</blockquote>
+<h4 id="间接编码">间接编码</h4>
+<p>通过描述如何生成解而不是直接表示解的方法。个体的基因型包含的是一组规则、指令、或者参数，通过这些信息可以生成问题解。</p>
+<p>例如：Cellular
+Encoding（CE）将一系列神经网络编码成一组基于简单图语法的标记树。</p>
+<blockquote>
+<p>Cellular encoding as a graph grammar</p>
+</blockquote>
+<h3 id="算法步骤">算法步骤</h3>
+<img src="/2023/12/06/NAS-Method-Comp-Eval/img-2.png" class="" title="img-2">
+<h4 id="step1-选择selection">STEP1 选择(Selection)</h4>
+<p>从所有生成的网络中选择一部分进行交叉。</p>
+<h5 id="选择策略">选择策略</h5>
+<p>1.适应比例选择(Fitness
+Selection)：也称轮盘选择，选择一个个体的概率与其适应度值直接成正比，被选择的概率是适用度(Fitness
+Value)在所有群体适应度之和的比例。</p>
+<p>2.排序选择(Rank
+Selection)：和适应比例选择类似，但不直接使用适应度值来计算个体被选择的概率，而是将适应度用于对个体进行排序。在排序后指定个体的等级，根据等级计算概率。</p>
+<p>3.锦标赛选择(Tournament Selection)</p>
+<ul>
+<li>在锦标赛选择方法的每一轮中，从总体中随机选择两个或多个个体，其中适应度得分最高的获胜并被选中。</li>
+<li>参加每个锦标赛选择回合的个体数量称为锦标赛规模。规模越大，最好的个人参加比赛的机会就越高，得分低的个人赢得比赛并被选中的机会就越小。</li>
+</ul>
+<blockquote>
+<p>Hierarchical representations for efficient architecture search
+Large-scale evolution of image classifiers Regularized evolution for
+image classifier architecture search Efficient multi-objective neural
+architecture search via lamarckian evolution</p>
+</blockquote>
+<h4 id="step2-交叉crossover">STEP2 交叉(Crossover)</h4>
+<p>经过选择的个体两两生成一个新的后代，后代继承了部分亲代的基因信息，模拟了生物学中交配的过程。</p>
+<h5 id="交叉策略">交叉策略</h5>
+<p>交叉的方法根据编码方法的不同而不同。</p>
+<p>1.对于二进制编码，两个亲可以通过一点或多点交叉来结合。</p>
+<p>2.对于Cellular
+Encoding，在一个父树中随机选择一个子树，并用该子树替换另一个父树中随机选择的子树。</p>
+<h4 id="step3-突变mutation">STEP3 突变(Mutation)</h4>
+<p>当基因信息遗传给下一代时，基因突变也会发生。虽然突变会导致网络结构的破坏和功能的丢失，但是能够探索更多的新结构和确保多样性。</p>
+<h5 id="突变策略">突变策略</h5>
+<p>1.点突变：随机翻转每一个bit</p>
+<blockquote>
+<p>A genetic programming approach to designing convolutional neural
+network architectures Genetic CNN</p>
+</blockquote>
+<p>2.连接突变：改变两层是否连接，或在两个节点/层之间添加/删除跳接</p>
+<blockquote>
+<p>Evolving deep neural networks</p>
+</blockquote>
+<p>3.自定义突变：预定义了一组突变操作子，包括改变学习率和滤波器的size，移除跳接等。</p>
+<blockquote>
+<p>Large-scale evolution of image classifiers</p>
+</blockquote>
+<h4 id="step4-更新update">STEP4 更新(Update)</h4>
+<p>完成上述步骤后，会生成许多新的网络，由于计算资源有限，通常需要删除一些网络。</p>
+<h5 id="更新策略">更新策略</h5>
+<p>1.随机选出两个子网络，删除其中较差的</p>
+<blockquote>
+<p>Large-scale evolution of image classifiers</p>
+</blockquote>
+<p>2.删除最老的网络</p>
+<blockquote>
+<p>Regularized evolution for image classifier architecture search</p>
+</blockquote>
+<p>3.每隔一段时间删除所有网络</p>
+<blockquote>
+<p>A genetic programming approach to designing convolutional neural
+network architectures. Evolving deep neural networks. Genetic CNN</p>
+</blockquote>
+<ol start="4" type="1">
+<li>不删除任何网络，整个种群随着时间慢慢生长</li>
+</ol>
+<blockquote>
+<p>Hierarchical representations for efficient architecture search</p>
+</blockquote>
+<h2 id="贝叶斯优化bayesian-optimization-bo">4 贝叶斯优化(Bayesian
+Optimization, BO)</h2>
+<p>贝叶斯优化方法通过建立目标函数概率模型，然后利用该模型选择最有希望的超参数，最后根据真实目标函数对选择的超参数进行评价。</p>
+<h3 id="贝叶斯优化分类">贝叶斯优化分类</h3>
+<p>根据概率模型的不同，贝叶斯优化分为三类：</p>
+<p>1.高斯过程（Gaussian Processes，GPs）</p>
+<blockquote>
+<p>Practical bayesian optimization of machine learning algorithms</p>
+</blockquote>
+<p>2.树Paezen估计量（Tree Parzen Estimators，TPE）</p>
+<blockquote>
+<p>Making a science of model search: Hyperparameter optimization in
+hundreds of dimensions for vision architectures</p>
+</blockquote>
+<p>3.随机森林（Random Forests）</p>
+<blockquote>
+<p>Sequential model-based optimization for general algorithm
+configuration</p>
+</blockquote>
+<p>即使目标函数是随机的、非凸的、甚至非连续的，贝叶斯优化算法也是有效的。但该算法复杂度过高，无法很好处理深度学习等搜索空间较大的问题。</p>
+<p>在随机搜索中，提出了权衡资源和性能的Hyperband算法，在采样过程中结合BO，提出了BOHB算法。</p>
+<blockquote>
+<p>BOHB: Robust and efficient hyperparameter optimization at scale</p>
+</blockquote>
+<h2 id="梯度下降gradient-descent-gd">5 梯度下降(Gradient Descent,
+GD)</h2>
+<p>之前的所有方法使用离散的方法搜索网络，并且将HPO问题看作为一个黑盒问题，需要多次消耗大量计算资源。</p>
+<p>基于梯度下降法的工作尝试解决离散和黑盒优化问题，例如DRATS，它在搜索空间内进行连续且可微分的搜索，由一个softmax函数软化离散的超参数决策实现的。</p>
+<blockquote>
+<p>DARTS: Differentiable architecture search.</p>
+</blockquote>
+<p>基于梯度下降的办法节省时间，但搜索空间和GPU占用呈现线性关系，搜索空间变大则GPU占用必然变大。</p>
+<h1 id="算法比较">算法比较</h1>
+<p>将主流的NAS算法分为了四类：</p>
+<ul>
+<li>随机搜索（RS）</li>
+<li>强化学习（RL）</li>
+<li>演化算法（EA）</li>
+<li>梯度下降（GD）</li>
+</ul>
+<p>下表为不同NAS算法的性能总结：</p>
+<img src="/2023/12/06/NAS-Method-Comp-Eval/img-3.png" class="" title="img-3">
+<p>表中各列的含义：</p>
+<ul>
+<li><p>Metric(%)：不同任务的含义不同，例如对于图像分类任务的度量（如
+CIFAR10）是准确度，如果没有特别声明，这是该表中的默认度量；对于 ImageNet
+数据集，该指标表示 top-1 和 top-5 准确度。</p></li>
+<li><p>GPU Days：<span class="math inline">\(GPU Days=N\times
+D\)</span>，其中<span class="math inline">\(N\)</span>为GPU的数量，<span
+class="math inline">\(D\)</span>为搜索所需的实际天数。</p></li>
+<li><p>Resources(GPUs)：表示搜索中使用的GPU数量和型号</p></li>
+<li><p>Parameters(million)：表示生成的模型的大小</p></li>
+</ul>
+<p>选择CIFAR10上不同NAS算法进行进一步的性能比较。NAS算法有四种，对于每个NAS算法，选择最好的结果进行比较。</p>
+<img src="/2023/12/06/NAS-Method-Comp-Eval/img-4.png" class="" title="img-4">
+<p>根据上图，可得出结论：</p>
+<ul>
+<li>在CIFAR10数据集上，各种算法的Accuracy很接近，没有明显的区别。</li>
+<li>基于梯度下降的方法是最快的。</li>
+<li>基于演化算法的方法普遍更加耗时，因为评估所有子网络代价过高。</li>
+<li>基于随机搜索的方法虽然思想简单，但也能得到不错的结果。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Learning Notes</category>
+      </categories>
+      <tags>
+        <tag>AutoML</tag>
+        <tag>NAS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>英语词性分类</title>
     <url>/2023/12/05/Part-of-English/</url>
     <content><![CDATA[<h2 id="简述">简述</h2>
@@ -427,105 +723,6 @@ bridge</p>
       </categories>
       <tags>
         <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模型自动超参数优化算法</title>
-    <url>/2023/11/19/HPO-method/</url>
-    <content><![CDATA[<h2
-id="单保真优化算法single-fidelity-optimization-algorithms">单保真优化算法(Single-Fidelity
-Optimization Algorithms)</h2>
-<p>单保真优化算法即为传统的优化算法，仅考虑在一个特定的评估条件下对模型性能的优化。通常，这个条件是某个单一的性能指标，例如在完整数据集上的准确率。</p>
-<span id="more"></span>
-<h3 id="网格搜索grid-search-gs">1 网格搜索(Grid Search, GS)</h3>
-<h4 id="定义">1.1 定义</h4>
-<p>网格搜索是一种穷举搜索方法，其通过遍历搜索空间中所有可能的组合来寻找最优超参数。</p>
-<p>网格搜索首先为每个超参数设定一组候选值，然后生成这些候选值的笛卡尔积，形成搜索空间，接下来会对每个超参数组合进行模型训练和评估，从而找到性能最佳的超参数组合。</p>
-<h4 id="优缺点">1.2 优缺点</h4>
-<p><strong>优点：</strong>网格搜索确保可以找到全局最优的超参数组合。</p>
-<p><strong>缺点：</strong>当超参数的数量和候选值较多时，会导致生成的搜索空间较大，应用网格搜索将十分消耗计算资源。</p>
-<p>可以选择固定多数超参数，分别对1-2个超参数调优的方式在一定程度上降低网格搜索的计算量。但该方法难以自动化执行，且由于目标函数一般为非凸，容易陷入局部最小值。</p>
-<h3 id="随机搜索random-search-rs">2 随机搜索(Random Search, RS)</h3>
-<h4 id="定义-1">2.1 定义</h4>
-<p>随机搜索是一种随机化的搜索方法，通过随机采样超参数组合来寻找最优超参数。</p>
-<h4 id="优缺点-1">2.2 优缺点</h4>
-<p><strong>优点：</strong>相较于网格搜索，随机搜索的计算成本较低，有可能在较短时间内找到较好的超参数组合。</p>
-<p><strong>缺点：</strong>随机搜索不保证可以找到全局最优解，且对于超参数空间的分布不均匀的情况可能效果较差。</p>
-<h3 id="贝叶斯优化bayesian-optimization-bo">3 贝叶斯优化(Bayesian
-Optimization, BO)</h3>
-<h4 id="定义-2">3.1 定义</h4>
-<p>贝叶斯优化是一种基于概率模型的全局优化方法，通过构建目标函数的概率模型（一般为高斯过程），预测未观测点的目标函数值和不确定性，在每次迭代中个根据采集函数确定下一个采样点进行评估，以最小化目标函数，寻找最优超参数。</p>
-<h4 id="优缺点-2">3.2 优缺点</h4>
-<p><strong>优点：</strong>BO算法考虑之前的参数信息，在低维空间中，能够在相对较少的迭代次数中找到全局最优解，性能显著优于网格搜索和随机搜索。</p>
-<p><strong>缺点：</strong>当参数较多时，容易发生维度爆炸，且会需要消耗大量的资源及时间。且那些具有未知平滑度和有噪声的高维、非凸函数，BO算法往往很难对其进行拟合和优化，而且通常BO算法都有很强的假设条件，而这些条件一般又很难满足。</p>
-<h2
-id="多保真优化算法multi-fidelity-optimization-algorithms">多保真优化算法(Multi-Fidelity
-Optimization Algorithms)</h2>
-<p>多保真度优化考虑了在多个评估条件下对模型性能的优化，可以是在不同的训练时间、资源预算、数据规模等条件下评估模型性能。这对于资源有限的任务，如在大数据集上的AutoML中，可以更有效地进行模型选择和优化。</p>
-<h3 id="successive-halving算法sh">4 Successive Halving算法(SH)</h3>
-<h4 id="定义-3">4.1 定义</h4>
-<p>Successive Halving
-算法是一种高效并行化的优化算法，其基本思想为，在每一轮中对超参数组合均匀的分配预算并进行验证评估，根据验证结果淘汰一半表现差的超参数组合，之后重复迭代上述过程直到找到最优的超参数组合。</p>
-<p>其中，算法中提到的预算，根据不同的应用场景可以有不同的定义，例如：</p>
-<ul>
-<li>迭代算法的迭代数(如：神经网络的epoch、随机森林，GBDT的树的个数)</li>
-<li>机器学习算法所使用的样本数</li>
-<li>深度强化学习中的尝试数 等</li>
-</ul>
-<h4 id="优缺点-3">4.2 优缺点</h4>
-<p><strong>优点：</strong>SH算法在每一轮中并行评估多个超参数组合，提高了搜索的效率。通过在每一轮中动态调整资源分配，为性能较好的超参数组合分配更多资源，实现了资源消耗和搜索性能的权衡。</p>
-<p><strong>缺点：</strong>SH算法对初始条件敏感，因为该算法需要将超参数组合数量和总资源量作为算法输入，因此需要在算法开始前进行超参数组合和资源之间的权衡。而实际上，在评估之前，无法得知设置超参数组合的数量和资源量的最优值。</p>
-<h3 id="hyperband算法hb">5 Hyperband算法(HB)</h3>
-<h4 id="定义-4">5.1 定义</h4>
-<p>Hyperband 的基本思想是通过在不同的超参数配置上运行不同的 Bandit
-算法实例，实现对多组配置的并行评估，并使用 Successive Halving
-的策略进行资源动态分配。</p>
-<p>在 Hyperband 中，每个 Successive Halving 阶段都有一个 Bandit
-算法的实例运行。该实例的任务是在给定的资源限制下，对一组超参数配置进行评估，并选择性能最好的一部分配置进入下一轮。</p>
-<h4 id="步骤">5.2 步骤</h4>
-<img src="/2023/11/19/HPO-method/img-1.png" class="" title="img">
-<p>算法输入：</p>
-<ul>
-<li><span
-class="math inline">\(R\)</span>：单个超参数组合所能分配的最大预算</li>
-<li><span
-class="math inline">\(\eta\)</span>：用于控制每次迭代后淘汰参数设置的比例的参数</li>
-</ul>
-<p>其他参数含义：</p>
-<ul>
-<li><span
-class="math inline">\(s_{max}\)</span>：控制总预算大小的参数</li>
-<li><span class="math inline">\(B\)</span>：总预算</li>
-<li><span class="math inline">\(n\)</span>：采样的超参数配置数</li>
-<li><span
-class="math inline">\(r\)</span>：单个超参数组合实际分配到的预算</li>
-</ul>
-<p>函数含义：</p>
-<ul>
-<li><code>get_hyperparameter_configuration(n)</code>：采样得到n组不同的超参数设置</li>
-<li><code>run_then_return_val_loss(t,r_i)</code>：根据指定的参数设置和预算计算valid
-loss</li>
-<li><code>top_k()</code>：根据指定参数选择前k个组合</li>
-</ul>
-<h4 id="优缺点-4">5.4 优缺点</h4>
-<p><strong>优点：</strong>HB算法在Successive
-Halving算法的基础上引入了更多的并行性，能够在不同的尺度上进行搜索，通过调整参数，可以在不同的计算资源预算下运行HB，具备更高的并行性和更加灵活的资源利用方式。</p>
-<p><strong>缺点：</strong>HB算法同样对初始配置敏感，不同的初始配置可能导致不同的搜索路径和结果。</p>
-<h3 id="bayesian-optimization-and-hyperband算法bohb">6 Bayesian
-Optimization and Hyperband算法(BOHB)</h3>
-<h4 id="定义-5">6.1 定义</h4>
-<p>在HB算法中，采样超参数配置使用的方法是均匀随机采样，而BOHB算法在HB算法的基础上，结合贝叶斯优化算法，更加合理的采样超参数配置。</p>
-<h4 id="优缺点-5">6.2 优缺点</h4>
-<p><strong>优点：</strong>
-BOHB算法结合了HB算法和贝叶斯优化，通过建模和利用先前评估的配置来更智能地选择下一个要评估的配置，进一步提高了搜索效率。</p>
-<p><strong>缺点：</strong>引入贝叶斯优化后，提升了整个算法的复杂程度，会引入一定的计算开销。因此更加适用于大型搜索空间，对于较小的问题或计算资源非常有限的情况，BOHB算法并不适用。</p>
-]]></content>
-      <categories>
-        <category>Learning Notes</category>
-      </categories>
-      <tags>
-        <tag>AutoML</tag>
-        <tag>HPO</tag>
       </tags>
   </entry>
   <entry>
